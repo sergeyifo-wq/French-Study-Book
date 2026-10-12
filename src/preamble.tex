@@ -1,0 +1,426 @@
+% French Study Book - LaTeX Preamble
+% Encoding and language settings
+\documentclass[11pt, a4paper, twoside, openright]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english, french]{babel}
+\usepackage[autoref, colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue, pdfborder={0 0 0}]{hyperref}
+
+% Fonts - Using system fonts for better embedding
+\usepackage{fontspec}
+\setmainfont{Linux Libertine O}
+\newfontfamily\headingfont{Playfair Display}
+\newfontfamily\sansfont{Source Sans Pro}
+
+% Page geometry
+\usepackage[a4paper, inner=25mm, outer=20mm, top=25mm, bottom=25mm, bindingoffset=5mm]{geometry}
+
+% Colors - French-inspired palette
+\definecolor{frenchblue}{RGB}{0, 85, 164}
+\definecolor{frenchred}{RGB}{232, 17, 45}
+\definecolor{frenchgold}{RGB}{255, 215, 0}
+\definecolor{cream}{RGB}{245, 245, 220}
+\definecolor{darkgray}{RGB}{44, 44, 44}
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+% Typographic enhancements
+\usepackage{microtype}
+\usepackage{setspace}
+\setstretch{1.5}
+\usepackage{parskip}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0pt}
+
+% Chapter and section styling
+\usepackage{titlesec}
+\usepackage{titletoc}
+
+% Custom chapter style
+\titleformat{\chapter}[display]
+    {\normalfont\headingfont\huge\bfseries\color{frenchblue}}
+    {\chaptertitlename\ \thechapter}
+    {20pt}
+    {\Huge\color{darkgray}}
+    [\vspace{-10pt}{\color{frenchred}\rule{\textwidth}{2pt}}]
+
+\titleformat{name=\chapter,numberless}[display]
+    {\normalfont\headingfont\huge\bfseries\color{frenchblue}}
+    {}
+    {0pt}
+    {\Huge\color{darkgray}}
+    [\vspace{-10pt}{\color{frenchred}\rule{\textwidth}{2pt}}]
+
+% Section styling
+\titleformat{\section}
+    {\normalfont\headingfont\Large\bfseries\color{frenchblue}}
+    {\thesection}
+    {1em}
+    {\color{darkgray}}
+    [\vspace{-5pt}{\color{frenchred}\rule{0.5\textwidth}{1pt}}]
+
+\titleformat{\subsection}
+    {\normalfont\headingfont\large\bfseries\color{frenchblue}}
+    {\thesubsection}
+    {1em}
+    {\color{darkgray}}
+
+% Page headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nounchap\leftmark}
+\fancyhead[LO]{\rightmark}
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{frenchred}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+% For plain pages (chapter starts)
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[C]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+}
+
+% Tables
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{array}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% Lists
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=*, topsep=0.5em, itemsep=0.25em}
+\setlist[enumerate]{leftmargin=*, topsep=0.5em, itemsep=0.25em}
+
+% Boxes for special content
+\usepackage{tcolorbox}
+\tcbuselibrary{most}
+\newtcolorbox{mascotbox}[1][]{
+    colback=cream,
+    colframe=frenchblue,
+    arc=5pt,
+    boxrule=2pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt,
+    fonttitle=\headingfont\bfseries\large,
+    title=#1,
+    coltitle=frenchblue,
+    enhanced,
+    breakable
+}
+
+\newtcolorbox{dialoguebox}{
+    colback=white,
+    colframe=frenchred,
+    arc=5pt,
+    boxrule=1.5pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt,
+    enhanced,
+    breakable
+}
+
+\newtcolorbox{vocabbox}{
+    colback=white,
+    colframe=frenchgold,
+    arc=5pt,
+    boxrule=1.5pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt,
+    enhanced,
+    breakable
+}
+
+\newtcolorbox{exercisebox}[1][]{
+    colback=white,
+    colframe=frenchblue,
+    arc=5pt,
+    boxrule=1.5pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt,
+    fonttitle=\headingfont\bfseries,
+    title=#1,
+    coltitle=frenchblue,
+    enhanced,
+    breakable
+}
+
+\newtcolorbox{notebox}{
+    colback=cream,
+    colframe=frenchred,
+    arc=5pt,
+    boxrule=1.5pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt,
+    fonttitle=\headingfont\bfseries,
+    title=Note,
+    coltitle=frenchred,
+    enhanced,
+    breakable
+}
+
+\newtcolorbox{culturebox}{
+    colback=white,
+    colframe=frenchgold,
+    arc=5pt,
+    boxrule=1.5pt,
+    left=10pt,
+    right=10pt,
+    top=8pt,
+    bottom=8pt,
+    fonttitle=\headingfont\bfseries,
+    title=Cultural Note,
+    coltitle=frenchgold,
+    enhanced,
+    breakable
+}
+
+% SVG graphics
+\usepackage{svg}
+\svgpath{{/workspace/French-Study-Book/content/assets/svg/}}
+
+% Floating figures
+\usepackage{float}
+\floatstyle{plaintop}
+\newfloat{illustration}{htbp}{lop}
+\floatname{illustration}{Illustration}
+
+% Custom environments
+\newenvironment{mascot}[1][]{
+    \begin{center}
+    \begin{mascotbox}[#1]
+    \includesvg[height=8cm]{#1}
+}{
+    \end{mascotbox}
+    \end{center}
+}
+
+% French-specific typography
+\usepackage{frenchle}
+\frenchbsetup{
+    FrenchFootnotes=false,
+    og=«",
+    fg=»",
+    thincolonspace=false
+}
+
+% Mathematics (for any linguistic diagrams)
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Index
+\usepackage{makeidx}
+\makeindex
+
+% Glossary
+\usepackage{glossaries}
+\makeglossaries
+
+% Custom commands
+\newcommand{\frenchword}[1]{\textbf{#1}}
+\newcommand{\pronunciation}[1]{/\textit{#1}/}
+\newcommand{\grammar}[1]{\textcolor{frenchblue}{\textbf{#1}}}
+\newcommand{\vocabulary}[1]{\textcolor{frenchgold}{\textbf{#1}}}
+\newcommand{\dialogue}[2]{\begin{dialoguebox}\textbf{#1:} #2\end{dialoguebox}}
+\newcommand{\level}[1]{\textcolor{white}\fcolorbox{frenchblue}{\parbox{\linewidth}{\centering\Large\bfseries CEFR Level #1}}}
+
+% Level indicators
+\newcommand{\levelAone}{\textcolor{white}\fcolorbox{frenchblue}{\parbox{1cm}{\centering\bfseries A1}}}
+\newcommand{\levelAtwo}{\textcolor{white}\fcolorbox{frenchred}{\parbox{1cm}{\centering\bfseries A2}}}
+\newcommand{\levelBone}{\textcolor{white}\fcolorbox{frenchgold}{\parbox{1cm}{\centering\bfseries B1}}}
+\newcommand{\levelBtwo}{\textcolor{white}\fcolorbox{frenchblue}{\parbox{1cm}{\centering\bfseries B2}}}
+\newcommand{\levelCone}{\textcolor{white}\fcolorbox{frenchred}{\parbox{1cm}{\centering\bfseries C1}}}
+\newcommand{\levelCtwo}{\textcolor{white}\fcolorbox{frenchgold}{\parbox{1cm}{\centering\bfseries C2}}}
+
+% Answer key formatting
+\newcommand{\answer}[1]{\textcolor{frenchblue}{\textbf{Answer:} #1}}
+
+% Exercise types
+\newcommand{\listening}{\textcolor{frenchred}{\textbf{Listening}}}
+\newcommand{\speaking}{\textcolor{frenchgold}{\textbf{Speaking}}}
+\newcommand{\reading}{\textcolor{frenchblue}{\textbf{Reading}}}
+\newcommand{\writing}{\textcolor{frenchred}{\textbf{Writing}}}
+\newcommand{\grammarex}{\textcolor{frenchgold}{\textbf{Grammar}}}
+\newcommand{\vocabex}{\textcolor{frenchblue}{\textbf{Vocabulary}}}
+
+% PDF metadata
+\hypersetup{
+    pdftitle={Complete French: A Self-Study Textbook},
+    pdfauthor={Amélie - Your French Learning Companion},
+    pdfsubject={French Language Learning - CEFR A1 to C2},
+    pdfkeywords={French, language, learning, self-study, CEFR, A1, A2, B1, B2, C1, C2},
+    pdfcreator={XeLaTeX},
+    pdfproducer={French Study Book Project},
+    colorlinks=true,
+    linkcolor=frenchblue,
+    citecolor=frenchred,
+    urlcolor=frenchgold,
+    bookmarksopen=true,
+    bookmarksnumbered=true,
+    bookmarksopenlevel=2
+}
+
+% Custom title page
+\newcommand{\makecover}{
+    \thispagestyle{empty}
+    \begin{center}
+    \vspace*{2cm}
+    {\headingfont\Huge\bfseries\color{frenchblue} Complete French\par}
+    \vspace{0.5cm}
+    {\headingfont\huge\bfseries A Self-Study Textbook\par}
+    \vspace{1cm}
+    {\headingfont\LARGE\color{frenchred} From Beginner to Proficiency\par}
+    \vspace{0.5cm}
+    {\headingfont\Large\color{darkgray} CEFR Levels A1 to C2\par}
+    \vspace{2cm}
+    \includesvg[height=10cm]{mascot_amelie_welcome}
+    \vspace{1cm}
+    {\headingfont\Large\bfseries With Amélie, Your French Learning Companion\par}
+    \vfill
+    {\headingfont\large\color{darkgray} First Edition, 2024\par}
+    
+    \clearpage
+    \thispagestyle{empty}
+    \vspace*{2cm}
+    {\headingfont\Large\bfseries Complete French\par}
+    {\headingfont\large A Self-Study Textbook\par}
+    \vspace{1cm}
+    {\headingfont\normalsize\color{darkgray} CEFR Levels A1 to C2\par}
+    \vspace{2cm}
+    \begin{flushright}
+    {\headingfont\normalsize\bfseries Written and Designed by:\par}
+    {\headingfont\normalsize Amélie - Your French Learning Companion\par}
+    
+    \vspace{1cm}
+    {\headingfont\small\color{darkgray} This book is designed for independent learners who want to\par}
+    {\headingfont\small\color{darkgray} achieve fluency in French from complete beginner to\par}
+    {\headingfont\small\color{darkgray} advanced proficiency.\par}
+    \end{flushright}
+    
+    \clearpage
+}
+
+% Level introduction page
+\newcommand{\levelintro}[3]{
+    \clearpage
+    \thispagestyle{empty}
+    \begin{center}
+    \vspace*{2cm}
+    {\headingfont\Huge\bfseries\color{frenchblue} #1\par}
+    \vspace{0.5cm}
+    {\headingfont\Large\color{frenchred} #2\par}
+    \vspace{1cm}
+    \includesvg[height=8cm]{#3}
+    \vspace{1cm}
+    \begin{minipage}{0.8\textwidth}
+    \centering
+    {\headingfont\normalsize #2\par}
+    
+    \vspace{0.5cm}
+    \end{minipage}
+    \vfill
+    
+    \clearpage
+}
+
+% Unit header
+\newcommand{\unitheader}[3]{
+    \clearpage
+    \begin{center}
+    \vspace*{1cm}
+    {\headingfont\huge\bfseries\color{frenchblue} Unit #1\par}
+    \vspace{0.5cm}
+    {\headingfont\Large\color{darkgray} #2\par}
+    \vspace{0.5cm}
+    {\headingfont\normalsize\color{frenchred} #3\par}
+    \vspace{0.5cm}
+    \includesvg[height=5cm]{mascot_amelie_explaining}
+    \vspace{1cm}
+    \end{center}
+}
+
+% Learning objectives
+\newcommand{\objectives}[1]{
+    \begin{tcolorbox}[colback=cream, colframe=frenchblue, arc=5pt, boxrule=2pt, title=\headingfont\bfseries\large Learning Objectives]
+    \begin{itemize}
+    #1
+    \end{itemize}
+    \end{tcolorbox}
+}
+
+% Vocabulary list
+\newcommand{\vocabularylist}[1]{
+    \begin{vocabbox}
+    \begin{longtable}{l l l}
+    \textbf{French} & \textbf{English} & \textbf{Pronunciation} \\
+    \midrule
+    #1
+    \end{longtable}
+    \end{vocabbox}
+}
+
+% Dialogue
+\newcommand{\conversation}[1]{
+    \begin{dialoguebox}
+    \begin{itemize}[leftmargin=*, topsep=0.25em, itemsep=0.1em]
+    #1
+    \end{itemize}
+    \end{dialoguebox}
+}
+
+% Exercise
+\newcommand{\exercise}[2][]{
+    \begin{exercisebox}[#1]
+    #2
+    \end{exercisebox}
+}
+
+% Answer key
+\newcommand{\answerkey}[1]{
+    \begin{tcolorbox}[colback=white, colframe=frenchred, arc=5pt, boxrule=1.5pt, title=\headingfont\bfseries Answer Key]
+    #1
+    \end{tcolorbox}
+}
+
+% Grammar explanation
+\newcommand{\grammarexplanation}[2][]{
+    \begin{tcolorbox}[colback=white, colframe=frenchgold, arc=5pt, boxrule=1.5pt, title=\headingfont\bfseries #1]
+    #2
+    \end{tcolorbox}
+}
+
+% Cultural note
+\newcommand{\culturalnote}[1]{
+    \begin{culturebox}
+    #1
+    \end{culturebox}
+}
+
+% Revision section
+\newcommand{\revision}[1]{
+    \begin{tcolorbox}[colback=cream, colframe=frenchblue, arc=5pt, boxrule=2pt, title=\headingfont\bfseries\large Revision]
+    #1
+    \end{tcolorbox}
+}
+
+% Assessment
+\newcommand{\assessment}[1]{
+    \begin{tcolorbox}[colback=white, colframe=frenchred, arc=5pt, boxrule=2pt, title=\headingfont\bfseries\large Assessment]
+    #1
+    \end{tcolorbox}
+}
